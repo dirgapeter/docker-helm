@@ -1,5 +1,5 @@
 FROM alpine:3.7 as build
-MAINTAINER Mario Siegenthaler <mario.siegenthaler@linkyard.ch>
+LABEL maintainer="Peter Dirga <dirga.peter@gmail.com>"
 
 RUN apk add --update --no-cache ca-certificates git
 
@@ -19,7 +19,7 @@ RUN curl -L http://storage.googleapis.com/kubernetes-helm/${FILENAME} > ${FILENA
 # The image we keep
 FROM alpine:3.7
 
-RUN apk add --update --no-cache git ca-certificates
+RUN apk add --update --no-cache git ca-certificates openssh
 
 COPY --from=build /tmp/linux-amd64/helm /bin/helm
 
